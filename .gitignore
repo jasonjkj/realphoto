@@ -1,0 +1,20 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+build/
+dist/
+.venv/
+venv/
+
+# --- 本地个人数据，绝不能进版本库 ---
+# 真实模特档案（姓名、社交账号、真人素材来源）
+realphoto/data/model-card.json
+model-card.json
+# 运行期生成：provider key、配置、抓取结果
+.env
+config.json
+album/
+model-grab/
+model-pool/
+last.json

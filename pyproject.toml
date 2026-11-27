@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "realphoto"
+version = "0.2.0"
+description = "真人素材抓取：本地相簿直发 + 按 provider 链抓图，可选视觉验货。纯资源获取，不生成图像。"
+requires-python = ">=3.10"
+# 公共机制（必应图搜 / 图片字节工具）在 agent-utils。
+# 用 git 直连而不是裸包名：PyPI 上的 `agent-utils` 是另一个人的项目，裸名会装错包。
+# `@ v0.5.0` 不能省：更早版本的顶层包名不同，装错版本会 ImportError。
+dependencies = [
+    "agent-utils @ git+https://github.com/jasonjkj/agent-utils.git@v0.5.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest"]
+
+[project.scripts]
+realphoto-bff = "realphoto.bff:main"
+
+[tool.setuptools.packages.find]
+include = ["realphoto*"]
+
+[tool.setuptools.package-data]
+realphoto = ["data/*.json"]

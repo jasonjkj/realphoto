@@ -1,0 +1,75 @@
+{
+  "schema": "model-card/1",
+  "name": "示例模特 Example Model",
+  "alias": "示例别名",
+  "codename": "示例 · Sample",
+  "updated": "2026-11-23",
+  "canonical_note": "风格参考档案示例。复制本文件为 model-card.json 后，把 name/alias/identity/source_accounts/search_keywords/verify_prompt 改成你要的对象；providers 填自己的 API key 环境变量名。身份：仅风格参考（穿搭/姿势/神态/构图），不作为脸部来源。",
+  "identity": {
+    "real_name": "示例对象",
+    "alias_list": [
+      "example_model"
+    ],
+    "facts": [
+      "示例档案：请替换为你自己的参考对象信息（风格/平台/关键词）"
+    ],
+    "role": "风格参考：穿搭/姿势/身形/神态/构图。脸部另行指定，不用参考对象的脸"
+  },
+  "source_accounts": {
+    "example": "https://example.com/replace-with-your-source"
+  },
+  "providers": {
+    "pexels": {
+      "enabled": false,
+      "env_key": "PEXELS_API_KEY",
+      "desc": "填 key 后置 enabled=true",
+      "endpoint": "https://api.pexels.com/v1/search"
+    },
+    "unsplash": {
+      "enabled": false,
+      "env_key": "UNSPLASH_API_KEY",
+      "desc": "填 key 后置 enabled=true"
+    },
+    "pixabay": {
+      "enabled": false,
+      "env_key": "PIXABAY_API_KEY",
+      "desc": "填 key 后置 enabled=true",
+      "endpoint": "https://pixabay.com/api/"
+    }
+  },
+  "access_note": "示例配置：provider 默认关闭，需填对应 API key 并置 enabled=true；不锁特定真人。",
+  "search_keywords": [
+    "portrait photo single person",
+    "street style outfit full body",
+    "casual daily photo portrait",
+    "fashion lookbook outdoor"
+  ],
+  "search_keywords_zh": [
+    "人像 单人 日常照",
+    "街拍 穿搭 全身",
+    "时装 写真 户外"
+  ],
+  "search_keywords_note": "search_keywords 为纯英文搜索词，多语种词仅留本字段备查，不参与搜索。示例词是人像类通用词，请换成你要的人物/风格描述。",
+  "host_allowlist": [
+    "blogspot.com",
+    "dmcdn.net",
+    "pic.cn",
+    "nimg.cn",
+    "sinaimg.cn",
+    "alicdn.com",
+    "zhimg.com",
+    "zzhimg.com",
+    "pixnet",
+    "cloudfront.net",
+    "bstatic.com",
+    "wixmp.com"
+  ],
+  "verify_prompt": "判断这张图是否可用：1) 必须真实照片（非插画/CG/截图）2) 主体是人像且清晰可辨 3) 单人 4) 符合本档案 name/identity 里描述的风格与人物条件（这条由你按自己档案改写）。输出JSON:{is_person:bool,is_single_person:bool,is_usable:bool,reason:str}",
+  "accept_rule": "is_person / is_single_person / is_usable 三者均为 true 即合格入池（判据见 realphoto/grab.py 的 ACCEPT_KEYS）",
+  "local_assets": {
+    "_note": "路径相对 REALPHOTO_HOME 根目录",
+    "album_photo": "realphoto/album/photo/",
+    "tags_index": "realphoto/album/_tags.txt",
+    "live_output": "image-output/"
+  }
+}
